@@ -1,0 +1,14 @@
+﻿@model BoodDb
+
+@{
+	BoodDb db = new BoodDb();
+	var books = db.GetBooks();
+}
+
+<h1>Список прочитанных книг</h1>
+<ul>
+	@foreach (Book book in books)
+	{
+		<li>@book.ToString()</li>
+	}
+</ul>
