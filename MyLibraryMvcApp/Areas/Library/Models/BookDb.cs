@@ -3,9 +3,9 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace MyLibraryMvcApp.Areas.Library.Models
 {
-    public class BoodDb
+    public class BookDb
     {
-        private readonly string filepath = @"Aseas/Library/Data/book_db.json";
+        private readonly string filepath = Path.Combine(Directory.GetCurrentDirectory(), "Areas", "Library", "Data", "book_db.json");
 
         public void AddBook(Book book)
         {
@@ -14,7 +14,9 @@ namespace MyLibraryMvcApp.Areas.Library.Models
             if (File.Exists(filepath))
             {
                 string json = File.ReadAllText(filepath);
-                books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+                if (!string.IsNullOrEmpty(json)){
+                    books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+                }
             }
 
             books.Add(book);
@@ -30,7 +32,9 @@ namespace MyLibraryMvcApp.Areas.Library.Models
             if (File.Exists(filepath))
             {
                 string json = File.ReadAllText(filepath);
-                books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+                if (!string.IsNullOrEmpty(json)){
+                    books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+                }
             }
 
             return books;

@@ -1,0 +1,28 @@
+﻿@model Book
+@{
+    ViewBag.Title = "Добавление книги";
+}
+
+
+<h1>Добавление книги</h1>
+<form asp-action="Add" asp-area="Library" method="post">
+    <input type="hidden" asp-for="Id" value="@Book.sId" />
+    
+    <h2>Автор:</h2>
+    <input type="text" asp-for="Author">
+    <span asp-validation-for="Author"></span>
+
+    <h2>Название:</h2>
+    <input type="text" asp-for="Title">
+    <span asp-validation-for="Title"></span>
+
+    <h2>Дата:</h2>
+    <input type="date" asp-for="Date">
+    <span asp-validation-for="Date"></span>
+
+    <h2>Жанр:</h2>
+    <input type="text" asp-for="Genre">
+    <span asp-validation-for="Genre"></span>
+
+    <button type="submit">Добавить</button>
+</form>

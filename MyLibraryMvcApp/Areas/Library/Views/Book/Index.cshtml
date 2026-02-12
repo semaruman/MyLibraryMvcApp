@@ -1,8 +1,9 @@
-﻿@model BoodDb
+﻿@model BookDb
 
 @{
-	BoodDb db = new BoodDb();
+	BookDb db = new BookDb();
 	var books = db.GetBooks();
+	ViewBag.Title = "Моя библиотека";
 }
 
 <h1>Список прочитанных книг</h1>
@@ -12,3 +13,7 @@
 		<li>@book.ToString()</li>
 	}
 </ul>
+
+<h2>
+	<a asp-action="Add">Добавить книгу</a>
+</h2>

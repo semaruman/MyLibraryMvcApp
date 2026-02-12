@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyLibraryMvcApp.Areas.Library.Models;
 
 namespace MyLibraryMvcApp.Areas.Library.Controllers
 {
@@ -13,7 +14,29 @@ namespace MyLibraryMvcApp.Areas.Library.Controllers
         }
 
         [Route("{area}/Add")]
+        [HttpGet]
         public IActionResult Add()
+        {
+            return View(new Book());
+        }
+
+        [Route("{area}/Add")]
+        [HttpPost]
+        public IActionResult Add(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                BookDb db = new BookDb();
+                db.AddBook(book);
+                Book.sId++;
+                return RedirectToAction("Success");
+            }
+            
+            return View(book);
+        }
+
+        [Route("{area}/Success")]
+        public IActionResult Success()
         {
             return View();
         }
