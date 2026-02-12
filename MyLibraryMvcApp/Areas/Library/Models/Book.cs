@@ -22,7 +22,7 @@ namespace MyLibraryMvcApp.Areas.Library.Models
 
         public override string ToString()
         {
-            return $"{Author} {Title} {Date}";
+            return $"{Author}: {Title}. {Date}";
         }
     }
 }
