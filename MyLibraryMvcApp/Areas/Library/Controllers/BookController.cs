@@ -40,5 +40,32 @@ namespace MyLibraryMvcApp.Areas.Library.Controllers
         {
             return View();
         }
+
+        [Route("{area}/Remove")]
+        [HttpGet]
+        public IActionResult Remove()
+        {
+            return View(new Book());
+        }
+
+        [Route("{area}/Remove")]
+        [HttpPost]
+        public IActionResult Remove(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                BookDb db = new BookDb();
+                db.RemoveBook(book);
+                return RedirectToAction("RemoveSuccess");
+            }
+
+            return View(book);
+        }
+
+        [Route("{area}/RemoveSuccess")]
+        public IActionResult RemoveSuccess()
+        {
+            return View();
+        }
     }
 }

@@ -24,5 +24,15 @@ namespace MyLibraryMvcApp.Areas.Library.Models
         {
             return $"{Author}: {Title}. {Date}";
         }
+
+        public static bool operator ==(Book left, Book right)
+        {
+            return left.Author == right.Author && left.Title == right.Title;
+        }
+
+        public static bool operator !=(Book left, Book right)
+        {
+            return left.Author != right.Author || left.Title != right.Title;
+        }
     }
 }

@@ -39,5 +39,23 @@ namespace MyLibraryMvcApp.Areas.Library.Models
 
             return books;
         }
+
+        public void RemoveBook(Book book)
+        {
+            List<Book> books = new List<Book>();
+
+            if (File.Exists(filepath))
+            {
+                string json = File.ReadAllText(filepath);
+                if (!string.IsNullOrEmpty(json)){
+                    books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+                }
+            }
+
+            books = books.Where(b => b != book).ToList();
+
+            string jsonWrite = JsonSerializer.Serialize(books);
+            File.WriteAllText(filepath, jsonWrite);
+        }
     }
 }

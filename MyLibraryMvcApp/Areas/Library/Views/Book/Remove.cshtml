@@ -1,0 +1,26 @@
+@model Book
+@{
+    ViewBag.Title = "Удаление книги";
+}
+
+
+<h1>Удаление книги</h1>
+<form asp-action="Remove" asp-area="Library" method="post">
+    <input type="hidden" asp-for="Id" value="@Book.sId" />
+    
+    <h2>Автор:</h2>
+    <input type="text" asp-for="Author">
+    <span asp-validation-for="Author"></span>
+
+    <h2>Название:</h2>
+    <input type="text" asp-for="Title">
+    <span asp-validation-for="Title"></span>
+
+    <input type="hidden" asp-for="Date" value="01-01-2000">
+    <input type="hidden" asp-for="Genre" value="Жанр">
+
+    <button type="submit">Удалить</button>
+</form>
+<h4>
+    <a asp-action="Index" asp-controller="Book" asp-area="Library">Отменить удаление</a>
+</h4>
